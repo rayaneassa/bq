@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base qr code porte</title>
+    <title>QR Code des Données</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;#e6f0ff
+        }
+        h1 {
+            color: #333;
+	    border: 2px solid blue; /* Ajoute une bordure bleue autour du titre */
+            padding: 10px; /* Ajoute un peu d'espace à l'intérieur du cadre */
+            background-color: #e6f0ff; /* Optionnel : ajoute une couleur de fond légère */
+            border-radius: 5px; /* Optionnel : arrondit les coins du cadre */
+        }
+	h2 {
+	    color: #222;
+	    border: 2px solid gray; /* Ajoute une bordure bleue autour du titre */
+            padding: 10px; /* Ajoute un peu d'espace à l'intérieur du cadre */
+            background-color: #e6f0ff; /* Optionnel : ajoute une couleur de fond légère */
+            border-radius: 5px; /* Optionnel : arrondit les coins du cadre */
+	}
+	h3 {
+	    color: #333;
+	    border: 2px solid blue; /* Ajoute une bordure bleue autour du titre */
+            padding: 10px; /* Ajoute un peu d'espace à l'intérieur du cadre */
+            background-color: #e6f0ff; /* Optionnel : ajoute une couleur de fond légère */
+            border-radius: 5px; /* Optionnel : arrondit les coins du cadre */
+	}
+
+
+        p {
+            color: #555;
+	    border: 2px black; /* Ajoute une bordure bleue autour du titre */
+            padding: 10px; /* Ajoute un peu d'espace à l'intérieur du cadre */
+            background-color: white; /* Optionnel : ajoute une couleur de fond légère */
+            border-radius: 5px; /* Optionnel : arrondit les coins du cadre */
+        }
+
+	img {
+            max-width: 100%; /* S'assure que l'image ne déborde pas de l'écran */
+            height: auto; /* Maintient les proportions de l'image */
+            margin-top: 20px; /* Ajoute un espace au-dessus de l'image */
+        }
+
+	label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, textarea {
+            width: 100%; /* Prend toute la largeur */
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+	#qrcode {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="nergeco.png" alt="Description de l'image" />
+
+	<title>Notice de montage</title>
+	<h1>Notice de montage</h1>
+	<a href="PCBLeds.pptx" target="_blank">Télécharger la notice de montage</a>
+
+         <title>Schéma électrique</title>
+	<h1>Schéma électrique</h1>
+	<a href="Porte Guillotine et Savoy.pptx" target="_blank">Télécharger le schéma électrique</a>
+
+</body>
+
+    <script>
+        function generateQRCode() {
+            // Récupérer les valeurs du formulaire  
+            const nom = document.getElementById('nom').value;
+            const norme = document.getElementById('norme').value;
+            const lpa = document.getElementById('lpa').value;
+	    const largeurhorstout = document.getElementById('largeurhorstout').value;
+            const hpl = document.getElementById('hpl').value;
+            const hhta = document.getElementById('hhta').value;
+
+	    const montage = document.getElementById('montage').value;
+            const rideau = document.getElementById('rideau').value;
+            const type = document.getElementById('type').value;
+            const transparence = document.getElementById('transparence').value;
+            const typebavette = document.getElementById('typebavette').value;
+            const donnéevent = document.getElementById('donnéevent').value;
+            const ventcalculé = document.getElementById('ventcalculé').value;
+            const classevent = document.getElementById('classevent').value;
+            const tubeguidage = document.getElementById('tubeguidage').value;
+            const typebache = document.getElementById('typebache').value;
+            const couleurrideau = document.getElementById('couleurrideau').value;
+            const hauteurmini = document.getElementById('hauteurmini').value;  
+            const hauteurmaxi = document.getElementById('hauteurmaxi').value;
+            
+	    const couleurstructure = document.getElementById('couleurstructure').value;  
+            const tailletraverse = document.getElementById('tailletraverse').value;
+
+            // Créer une chaîne de texte avec les données  
+            const data = `Nom: ${nom}\nNorme: ${norme}\nLPA: ${lpa}\nLargeur Hors Tout: ${largeurhorstout}\nHauteur Passage Libre (HPL): ${hpl}\nHauteur Hors Tout Abaque (HHTA): ${hhta}\n\nMontage: ${montage}\nRideau: ${rideau}\nType: ${type}\nTransparence: ${transparence}\nType de Bavette: ${typebavette}\nDonnée Vent demandée: ${donnéevent}\nVent de la porte calculé: ${ventcalculé}\nClasse au vent de la porte: ${classevent}\nTube de guidage: ${tubeguidage}\nType de Bache: ${typebache}\nCouleur Rideau: ${couleurrideau}\nHauteur Mini Transparent / Sol: ${hauteurmini}\nHauteur Maxi Transparent / Sol: ${hauteurmaxi}\n\nCouleur Structure: ${couleurstructure}\nTaille de la Traverse: ${tailletraverse}`;
+
+            // Créer un blob contenant les données  
+            const blob = new Blob([data], { type: 'text/plain' });
+            
+            // Créer un lien pour le téléchargement  
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'donnees.txt'; // Nom du fichier à télécharger  
+            a.click();
+
+            // Libérer l'URL de l'objet  
+            URL.revokeObjectURL(url);
+
+	     // Effacer tout QR Code précédent  
+            $('#qrcode').empty();
+
+            // Générer un QR Code  
+            $('#qrcode').qrcode({
+            text: data,
+            width: 128,
+            height: 128  
+            })
+        }
+    </script>
+</head>
+<body>
+	<h1>Caractéristiques</h1>
+
+        <h2>Nom de la porte</h2>
+        <form id="dataForm" onsubmit="event.preventDefault(); saveData();">
+        <label for="nom">Nom :</label><br>
+        <input type="text" id="nom" name="nom" required><br><br>
+
+	<h2>Norme européenne</h2>
+        <label for="norme">Norme :</label><br>
+        <input type="norme" id="norme" name="norme" required><br><br>
+
+	<h2>Largeur de passage (LPA)</h2>
+        <label for="lpa">LPA :</label><br>
+        <input type="lpa" id="lpa" name="lpa" required><br><br>
+
+	<h2>Largeur Hors Tout</h2>
+	<label for="largeurhorstout">Largeur Hors Tout :</label><br>
+        <input type="largeurhorstout" id="largeurhorstout" name="largeurhorstout" required><br><br>
+
+	<h2>Hauteur Passage Libre (HPL)</h2>
+        <label for="hpl">Hauteur Passage Libre :</label><br>
+        <input type="hpl" id="hpl" name="hpl" required><br><br>
+
+	<h2>Hauteur Hors Tout Abaque (HHTA)</h2>
+	<label for="hhta">Hauteur Hors Tout Abaque :</label><br>
+        <input type="hhta" id="hhta" name="hhta" required><br><br>
+
+
+	<h1>Rideau</h1>
+
+        <h2>Montage</h2>
+	<label for="montage">Montage :</label><br>
+        <input type="montage" id="montage" name="montage" required><br><br>
+
+	<h2>Rideau</h2>
+	<label for="rideau">Rideau :</label><br>
+        <input type="rideau" id="rideau" name="rideau" required><br><br>
+
+	<h2>Type</h2>
+	<label for="type">Type :</label><br>
+        <input type="type" id="type" name="type" required><br><br>
+
+	<h2>Transparence</h2>
+	<label for="transparence">Transparence :</label><br>
+        <input type="transparence" id="transparence" name="transparence" required><br><br>
+
+        <h2>Type de Bavette</h2>
+	<label for="typebavette">Type de Bavette :</label><br>
+        <input type="typebavette" id="typebavette" name="typebavette" required><br><br>
+
+	<h2>Donnée Vent demandée</h2>
+	<label for="donnéevent">Donnée Vent demandée :</label><br>
+        <input type="donnéevent" id="donnéevent" name="donnéevent" required><br><br>
+
+	<h2>Vent de la porte calculé</h2>
+	<label for="ventcalculé">Vent de la porte calculé :</label><br>
+        <input type="ventcalculé" id="ventcalculé" name="ventcalculé" required><br><br>
+
+	<h2>Classe au vent de la porte</h2>
+	<label for="classevent">Classe au vent de la porte :</label><br>
+        <input type="classevent" id="classevent" name="classevent" required><br><br>
+
+	<h2>Tube de guidage</h2>
+	<label for="tubeguidage">Tube de guidage :</label><br>
+        <input type="tubeguidage" id="tubeguidage" name="tubeguidage" required><br><br>
+
+        <h2>Type de Bache</h2>
+	<label for="typebache">Type de Bache :</label><br>
+        <input type="typebache" id="typebache" name="typebache" required><br><br>
+
+	<h2>Couleur Rideau</h2>
+	<label for="couleurrideau">Couleur Rideau :</label><br>
+        <input type="couleurrideau" id="couleurrideau" name="couleurrideau" required><br><br>
+
+	<h2>Hauteur Mini Transparent / Sol</h2>
+	<label for="hauteurmini">Hauteur Mini Transparent / Sol :</label><br>
+        <input type="hauteurmini" id="hauteurmini" name="hauteurmini" required><br><br>
+
+	<h2>Hauteur Maxi Transparent / Sol</h2>
+	<label for="hauteurmaxi">Hauteur Maxi Transparent / Sol :</label><br>
+        <input type="hauteurmaxi" id="hauteurmaxi" name="hauteurmaxi" required><br><br>
+
+
+        <h1>Structure</h1>
+
+        <h2>Couleur Structure</h2>
+	<label for="couleurstructure">Couleur Structure :</label><br>
+        <input type="couleurstructure" id="couleurstructure" name="couleurstructure" required><br><br>
+
+	<h2>Taille de la traverse</h2>
+	<label for="tailletraverse">Taille de la traverse :</label><br>
+        <input type="tailletraverse" id="tailletraverse" name="tailletraverse" required><br><br>
+
+        <input type="submit" value="Enregistrer les Données">
+	<button onclick="generateQRCode()">Générer QR Code</button>
+
+    <h2>QR Code</h2>
+    <div id="qrcode"></div>
+    </form>
+</body>
+</html>
