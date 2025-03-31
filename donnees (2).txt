@@ -1,0 +1,23 @@
+Nom: star 5
+Norme: ce
+LPA: e
+Largeur Hors Tout: 400
+Hauteur Passage Libre (HPL): q
+Hauteur Hors Tout Abaque (HHTA): 400
+
+Montage: fe
+Rideau: a
+Type: f
+Transparence: a
+Type de Bavette: e
+Donnée Vent demandée: f
+Vent de la porte calculé: f
+Classe au vent de la porte: a
+Tube de guidage: a
+Type de Bache: f
+Couleur Rideau: a
+Hauteur Mini Transparent / Sol: a
+Hauteur Maxi Transparent / Sol: e
+
+Couleur Structure: e
+Taille de la Traverse: a
