@@ -244,8 +244,16 @@
         <input type="submit" value="Enregistrer les Données">
 	<button onclick="generateQRCode()">Générer QR Code</button>
 
-    <h2>QR Code</h2>
-    <div id="qrcode"></div>
+    <h1>Générateur de QR Code</h1>
+    <canvas id="qr-code"></canvas>
+    <script>
+        // Créer une instance QRious  
+        var qr = new QRious({
+            element: document.getElementById('qr-code'),
+            value: 'https://www.example.com', // Remplacez par l'URL ou le texte que vous souhaitez encoder  
+            size: 200 // Taille du QR code  
+        });
+    </script>
     </form>
 </body>
 </html>
